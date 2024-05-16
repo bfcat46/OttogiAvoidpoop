@@ -4,7 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9a494aec-4231-41fd-ad92-5382d50056e8" name="Changes" comment="" />
+    <list default="true" id="9a494aec-4231-41fd-ad92-5382d50056e8" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.SpartaCamp-TeamAssignment-3.dir/.idea/projectSettingsUpdater.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.SpartaCamp-TeamAssignment-3.dir/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01.Scenes.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01.Scenes/MainScene.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01.Scenes/MainScene.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01.Scenes/StartScene.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01.Scenes/StartScene.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/02.Scripts.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/03.Resources.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/03.Resources/Prefabs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,6 +40,9 @@
     &quot;accountId&quot;: &quot;786e81fd-5251-4945-b396-33052bf4fa44&quot;
   }
 }</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/02.Scripts/GameManager.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -33,26 +51,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/cornflake/UnityProjects/SpartaCamp-TeamAssignment-3",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/cornflake/UnityProjects/SpartaCamp-TeamAssignment-3&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "/Users/cornflake/Library/Application Support/JetBrains/Rider2024.1/resharper-host/DecompilerCache",
-      "/Users/cornflake/Library/Application Support/JetBrains/Rider2024.1/resharper-host/SourcesCache",
-      "/Users/cornflake/Library/Application Support/Symbols/src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;/Users/cornflake/Library/Application Support/JetBrains/Rider2024.1/resharper-host/DecompilerCache&quot;,
+      &quot;/Users/cornflake/Library/Application Support/JetBrains/Rider2024.1/resharper-host/SourcesCache&quot;,
+      &quot;/Users/cornflake/Library/Application Support/Symbols/src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
