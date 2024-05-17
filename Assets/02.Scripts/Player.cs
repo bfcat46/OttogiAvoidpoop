@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
         //Direction Sprite
         if(Input.GetButton("Horizontal"))
         {
-            _spriteRenderer.flipX = Mathf.Approximately(Input.GetAxisRaw("Horizontal"), -1);
+            _spriteRenderer.flipX = Input.GetAxisRaw("Horizontal") == -1;
         }
     }
 }
