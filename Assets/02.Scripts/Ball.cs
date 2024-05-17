@@ -2,13 +2,9 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    //private float _speed = 0.05f;
-
-
-    private float speed = 0.05f;
+    //private float speed = 0.05f;
 
     //public int type;
-
 
     private void Start()
     {
@@ -29,6 +25,19 @@ public class Ball : MonoBehaviour
             Debug.Log("바닥 충돌");
             Animator animator = GetComponent<Animator>();
             animator.enabled = false; // 애니메이터 비활성화
+
+            Rigidbody2D rb = GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.isKinematic = true; // 물리 상호작용 비활성화
+            }
+
+            Collider2D collider = GetComponent<Collider2D>();
+            if (collider != null)
+            {
+                collider.enabled = false; // 콜라이더 비활성화
+            }
+
             Invoke("DestroyBall", 3f); // 지면과 충돌하면 3초 후 삭제
         }
         else if (collision.gameObject.CompareTag("Player")) // 충돌한 객체가 플레이어라면
