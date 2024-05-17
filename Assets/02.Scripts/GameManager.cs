@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     public int Score;
     public int BestScore;
 
+    public GameObject ball;
+
     private void Awake()
     {
         if (s_instance == null)
@@ -22,12 +24,25 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        
+    }
+
+
 
     public void GameStart()
     {
         Score = 0;
         SceneManager.LoadScene("MainScene");
+        InvokeRepeating("MakeBall", 0.0f, 1.0f);
     }
+
+    void MakeBall()
+    {
+        Instantiate(ball);
+    }
+
 
     public void GameOver()
     {
