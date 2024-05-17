@@ -1,43 +1,68 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+
 
 public class Player : MonoBehaviour
 {
-    private Rigidbody2D _rigid;
-    private SpriteRenderer _spriteRenderer;
+    Rigidbody2D rigid;
+    SpriteRenderer spriteRenderer;
+    Animator animator;
 
     public float MaxSpeed;
 
     private void Awake()
     {
-        _rigid = GetComponent<Rigidbody2D>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+        rigid = GetComponent<Rigidbody2D>();
+        rigid.freezeRotation = true;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
-
-    private void FixedUpdate()
-    {
-        var h = Input.GetAxisRaw("Horizontal");
-        _rigid.AddForce(Vector2.right * h, ForceMode2D.Impulse);
-
-        if (_rigid.velocity.x > MaxSpeed)
-        {
-            _rigid.velocity = new Vector2(MaxSpeed, _rigid.velocity.y);
-        }
-        else if (_rigid.velocity.x < MaxSpeed * -1)
-        {
-            _rigid.velocity = new Vector2(MaxSpeed * -1, _rigid.velocity.y);
-        }
-    }
-
     private void Update()
     {
         //Stop speed
-        if (!Input.GetButtonUp("Horizontal")) return;
-        _rigid.velocity = new Vector2(0.5f * _rigid.velocity.normalized.x, _rigid.velocity.y);
-
-        //Direction Sprite
-        if(Input.GetButton("Horizontal"))
+        if (Input.GetButtonUp("Horizontal"))
         {
-            _spriteRenderer.flipX = Input.GetAxisRaw("Horizontal") == -1;
+            rigid.velocity = new Vector2(0.5f * rigid.velocity.normalized.x, rigid.velocity.y);
+        }
+        //Direction Sprite
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            spriteRenderer.flipX = true; 
+        }
+        else if (Input.GetKeyDown(KeyCode.D))
+        {
+            spriteRenderer.flipX = false;
+        }
+        if(Mathf.Abs(rigid.velocity.x) < 0.2)
+        {
+            animator.SetBool("isWalking", false);
+        }
+        else
+        {
+            animator.SetBool("isWalking", true);
+        }
+    }
+    void FixedUpdate()
+    {
+        float h = Input.GetAxisRaw("Horizontal");
+        rigid.AddForce(Vector2.right * h, ForceMode2D.Impulse);
+
+        if (rigid.velocity.x > MaxSpeed)
+        {
+            rigid.velocity = new Vector2(MaxSpeed, rigid.velocity.y);
+        }
+        else if (rigid.velocity.x < MaxSpeed * (-1))
+        {
+            rigid.velocity = new Vector2(MaxSpeed * (-1), rigid.velocity.y);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Ball"))
+        {
+            GameManager.Instance.GameOver();
         }
     }
 }
