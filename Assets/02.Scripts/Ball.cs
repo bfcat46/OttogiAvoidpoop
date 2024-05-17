@@ -2,60 +2,45 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    //private float speed = 0.05f;
-
-    //public int type;
-
-    private AudioSource audioSource;
-    public AudioClip clip;
+    private AudioSource _audioSource;
+    public AudioClip Clip;
 
     private void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        _audioSource = GetComponent<AudioSource>();
 
         var x = Random.Range(-3.0f, 3.0f);
         const float y = 10.0f;
         transform.position = new Vector2(x, y);
     }
 
-    void Update()
-    {
-        //transform.position += Vector3.down * _speed;
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground")) // Ãæµ¹ÇÑ °´Ã¼°¡ ¹Ù´ÚÀÌ¶ó¸é
+        if (collision.gameObject.CompareTag("Ground")) // ï¿½æµ¹ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½Ù´ï¿½ï¿½Ì¶ï¿½ï¿½
         {
-            audioSource.PlayOneShot(clip);
-            Animator animator = GetComponent<Animator>();
-            animator.enabled = false; // ¾Ö´Ï¸ÞÀÌÅÍ ºñÈ°¼ºÈ­
+            _audioSource.PlayOneShot(Clip);
+            var animator = GetComponent<Animator>();
+            animator.enabled = false; // ï¿½Ö´Ï¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­
 
-            Rigidbody2D rb = GetComponent<Rigidbody2D>();
+            var rb = GetComponent<Rigidbody2D>();
             if (rb != null)
             {
-                rb.isKinematic = true; // ¹°¸® »óÈ£ÀÛ¿ë ºñÈ°¼ºÈ­
+                rb.isKinematic = true; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ï¿½Û¿ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­
             }
 
-            Collider2D collider = GetComponent<Collider2D>();
-            if (collider != null)
+            var component = GetComponent<Collider2D>();
+            if (component != null)
             {
-                collider.enabled = false; // ÄÝ¶óÀÌ´õ ºñÈ°¼ºÈ­
+                component.enabled = false; // ï¿½Ý¶ï¿½ï¿½Ì´ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­
             }
 
-            Invoke("DestroyBall", 3f); // Áö¸é°ú Ãæµ¹ÇÏ¸é 3ÃÊ ÈÄ »èÁ¦
+            Invoke(nameof(DestroyBall), 3f); // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½æµ¹ï¿½Ï¸ï¿½ 3ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         }
 
-        else if (collision.gameObject.CompareTag("Player")) // Ãæµ¹ÇÑ °´Ã¼°¡ ÇÃ·¹ÀÌ¾î¶ó¸é
+        else if (collision.gameObject.CompareTag("Player")) // ï¿½æµ¹ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½
         {
-            audioSource.PlayOneShot(clip);
+            _audioSource.PlayOneShot(Clip);
         }
-
-        //if (!collision.gameObject.CompareTag("Ground")) return;
-        //var animator = GetComponent<Animator>();
-        //animator.enabled = false;
-        //Invoke(nameof(DestroyBall), 3f);
-
     }
 
 

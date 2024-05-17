@@ -1,68 +1,66 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 
 public class Player : MonoBehaviour
 {
-    Rigidbody2D rigid;
-    SpriteRenderer spriteRenderer;
-    Animator animator;
+    private Rigidbody2D _rigid;
+    private SpriteRenderer _spriteRenderer;
+    private Animator _animator;
 
     public float MaxSpeed;
+    private static readonly int IsWalking = Animator.StringToHash("isWalking");
+
+    [SerializeField]
+    private GameObject GameOverModal;
 
     private void Awake()
     {
-        rigid = GetComponent<Rigidbody2D>();
-        rigid.freezeRotation = true;
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
+        GameOverModal.SetActive(false);
+        _rigid = GetComponent<Rigidbody2D>();
+        _rigid.freezeRotation = true;
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _animator = GetComponent<Animator>();
     }
+    
     private void Update()
     {
         //Stop speed
         if (Input.GetButtonUp("Horizontal"))
         {
-            rigid.velocity = new Vector2(0.5f * rigid.velocity.normalized.x, rigid.velocity.y);
+            _rigid.velocity = new Vector2(0.5f * _rigid.velocity.normalized.x, _rigid.velocity.y);
         }
+        
         //Direction Sprite
         if (Input.GetKeyDown(KeyCode.A))
         {
-            spriteRenderer.flipX = true; 
+            _spriteRenderer.flipX = true; 
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
-            spriteRenderer.flipX = false;
+            _spriteRenderer.flipX = false;
         }
-        if(Mathf.Abs(rigid.velocity.x) < 0.2)
-        {
-            animator.SetBool("isWalking", false);
-        }
-        else
-        {
-            animator.SetBool("isWalking", true);
-        }
+        
+        _animator.SetBool(IsWalking, !(Mathf.Abs(_rigid.velocity.x) < 0.2));
     }
-    void FixedUpdate()
+    
+    private void FixedUpdate()
     {
-        float h = Input.GetAxisRaw("Horizontal");
-        rigid.AddForce(Vector2.right * h, ForceMode2D.Impulse);
+        var h = Input.GetAxisRaw("Horizontal");
+        _rigid.AddForce(Vector2.right * h, ForceMode2D.Impulse);
 
-        if (rigid.velocity.x > MaxSpeed)
+        if (_rigid.velocity.x > MaxSpeed)
         {
-            rigid.velocity = new Vector2(MaxSpeed, rigid.velocity.y);
+            _rigid.velocity = new Vector2(MaxSpeed, _rigid.velocity.y);
         }
-        else if (rigid.velocity.x < MaxSpeed * (-1))
+        else if (_rigid.velocity.x < MaxSpeed * -1)
         {
-            rigid.velocity = new Vector2(MaxSpeed * (-1), rigid.velocity.y);
+            _rigid.velocity = new Vector2(MaxSpeed * -1, _rigid.velocity.y);
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Ball"))
-        {
-            GameManager.Instance.GameOver();
-        }
+        if (!collision.gameObject.CompareTag("Ball")) return;
+        GameOverModal.SetActive(true);
+        GameManager.Instance.GameOver();
     }
 }

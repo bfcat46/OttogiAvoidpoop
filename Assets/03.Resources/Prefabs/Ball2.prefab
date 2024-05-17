@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1283323200748776717}
   m_Layer: 0
   m_Name: Ball2
-  m_TagString: Untagged
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18b389345f74f54ebb7d2affc8e76fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clip: {fileID: 0}
 --- !u!58 &5766807526477644697
 CircleCollider2D:
   m_ObjectHideFlags: 0

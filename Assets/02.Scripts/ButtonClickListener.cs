@@ -16,10 +16,10 @@ public class ButtonClickListener : MonoBehaviour
     {
         switch (gameObject.name)
         {
-            case "BackButton":
+            case "BackButton" or "ExitButton":
                 SceneManager.LoadScene("StartScene");
                 break;
-            case "StartButton":
+            case "StartButton" or "RetryButton":
                 GameManager.Instance.GameStart();
                 break;
             case "SettingButton":

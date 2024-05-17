@@ -12,8 +12,6 @@ public class GameManager : MonoBehaviour
 
     public int Score;
     public int BestScore;
-    
-    public bool IsGamePlaying;
 
     public GameObject Ball;
 
@@ -32,6 +30,7 @@ public class GameManager : MonoBehaviour
 
     public void GameStart()
     {
+        Time.timeScale = 1;
         Score = 0;
         SceneManager.LoadScene("MainScene");
         InvokeRepeating(nameof(MakeBall), 0.0f, 1.0f);
@@ -44,7 +43,10 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        //Todo: MainScene 완성 후 추가 예정 => 모달창 띄우기(점수 및 최고 점수 업데이트)
-        
+        Time.timeScale = 0;
+        if (Instance.Score > Instance.BestScore)
+        {
+            Instance.BestScore = Instance.Score;
+        }
     }
 }
