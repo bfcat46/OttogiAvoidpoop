@@ -1,31 +1,43 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    Rigidbody2D rigid;
+    private Rigidbody2D _rigid;
+    private SpriteRenderer _spriteRenderer;
 
-    public float maxSpeed; // 최대 속력 변수
+    public float MaxSpeed;
 
     private void Awake()
     {
-        rigid = GetComponent<Rigidbody2D>();
+        _rigid = GetComponent<Rigidbody2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        float h = Input.GetAxisRaw("Horizontal");
-        rigid.AddForce(Vector2.right * h, ForceMode2D.Impulse);
+        var h = Input.GetAxisRaw("Horizontal");
+        _rigid.AddForce(Vector2.right * h, ForceMode2D.Impulse);
 
-        if(rigid.velocity.x > maxSpeed) // 오른쪽으로 이동 (+) , 최대 속력을 넘으면
+        if (_rigid.velocity.x > MaxSpeed)
         {
-            rigid.velocity = new Vector2(maxSpeed, rigid.velocity.y);
+            _rigid.velocity = new Vector2(MaxSpeed, _rigid.velocity.y);
         }
-        else if(rigid.velocity.x < maxSpeed*(-1)) // 왼쪽으로 이동 (-)
+        else if (_rigid.velocity.x < MaxSpeed * -1)
         {
-            rigid.velocity = new Vector2(maxSpeed*(-1), rigid.velocity.y); // y 값은 점프의 영향이므로 0으로 제한을 두면 안됨
+            _rigid.velocity = new Vector2(MaxSpeed * -1, _rigid.velocity.y);
         }
+    }
 
+    private void Update()
+    {
+        //Stop speed
+        if (!Input.GetButtonUp("Horizontal")) return;
+        _rigid.velocity = new Vector2(0.5f * _rigid.velocity.normalized.x, _rigid.velocity.y);
+
+        //Direction Sprite
+        if(Input.GetButton("Horizontal"))
+        {
+            _spriteRenderer.flipX = Mathf.Approximately(Input.GetAxisRaw("Horizontal"), -1);
+        }
     }
 }
