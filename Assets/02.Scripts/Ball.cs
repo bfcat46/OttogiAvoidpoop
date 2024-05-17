@@ -16,7 +16,7 @@ public class Ball : MonoBehaviour
 
     void Update()
     {
-        //transform.position += Vector3.down * speed;
+        //transform.position += Vector3.down * speed; // 이동방법1
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
