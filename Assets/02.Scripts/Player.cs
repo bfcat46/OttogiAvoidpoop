@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 {
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
+    Animator animator;
 
     public float MaxSpeed;
 
@@ -15,6 +16,7 @@ public class Player : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         rigid.freezeRotation = true;
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
     private void Update()
     {
@@ -31,6 +33,14 @@ public class Player : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.D))
         {
             spriteRenderer.flipX = false;
+        }
+        if(Mathf.Abs(rigid.velocity.x) < 0.2)
+        {
+            animator.SetBool("isWalking", false);
+        }
+        else
+        {
+            animator.SetBool("isWalking", true);
         }
     }
     void FixedUpdate()
