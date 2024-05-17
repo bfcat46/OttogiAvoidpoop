@@ -28,6 +28,12 @@ public class Ball : MonoBehaviour
             animator.enabled = false; // 애니메이터 비활성화
             Invoke("DestroyBall", 3f); // 지면과 충돌하면 3초 후 삭제
         }
+        else if (collision.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("플레이어 충돌");
+            Time.timeScale = 0.0f;
+            GameManager.Instance.GameOver();
+        }
     }
 
 
