@@ -16,31 +16,31 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground")) // �浹�� ��ü�� �ٴ��̶��
+        if (collision.gameObject.CompareTag("Ground")) 
         {
             GameManager.Instance.Score++;
             
             _audioSource.PlayOneShot(Clip);
             
             var animator = GetComponent<Animator>();
-            animator.enabled = false; // �ִϸ����� ��Ȱ��ȭ
+            animator.enabled = false;
 
             var rb = GetComponent<Rigidbody2D>();
             if (rb != null)
             {
-                rb.isKinematic = true; // ���� ��ȣ�ۿ� ��Ȱ��ȭ
+                rb.isKinematic = true;
             }
 
             var component = GetComponent<Collider2D>();
             if (component != null)
             {
-                component.enabled = false; // �ݶ��̴� ��Ȱ��ȭ
+                component.enabled = false; 
             }
 
-            Invoke(nameof(DestroyBall), 3f); // ����� �浹�ϸ� 3�� �� ����
+            Invoke(nameof(DestroyBall), 3f);
         }
 
-        else if (collision.gameObject.CompareTag("Player")) // �浹�� ��ü�� �÷��̾���
+        else if (collision.gameObject.CompareTag("Player")) 
         {
             _audioSource.PlayOneShot(Clip);
         }

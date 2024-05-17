@@ -14,7 +14,8 @@ public class GameManager : MonoBehaviour
     public int BestScore;
 
     public GameObject Ball;
-
+    private int _count = 1;
+    
     private void Awake()
     {
         if (s_instance == null)
