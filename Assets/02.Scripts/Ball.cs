@@ -18,7 +18,10 @@ public class Ball : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground")) // �浹�� ��ü�� �ٴ��̶��
         {
+            GameManager.Instance.Score++;
+            
             _audioSource.PlayOneShot(Clip);
+            
             var animator = GetComponent<Animator>();
             animator.enabled = false; // �ִϸ����� ��Ȱ��ȭ
 

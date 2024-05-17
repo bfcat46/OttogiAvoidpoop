@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         Score = 0;
         SceneManager.LoadScene("MainScene");
-        InvokeRepeating(nameof(MakeBall), 0.0f, 1.0f);
+        InvokeRepeating(nameof(MakeBall), 0.0f, 3.0f);
     }
 
     private void MakeBall()
@@ -41,12 +41,8 @@ public class GameManager : MonoBehaviour
         Instantiate(Ball);
     }
 
-    public void GameOver()
+    public static void GameOver()
     {
         Time.timeScale = 0;
-        if (Instance.Score > Instance.BestScore)
-        {
-            Instance.BestScore = Instance.Score;
-        }
     }
 }

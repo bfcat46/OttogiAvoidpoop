@@ -1086,8 +1086,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b65da2c28b5464ded957f9ce272da5db, type: 2}
+  m_sharedMaterial: {fileID: -2202666271939420381, guid: b65da2c28b5464ded957f9ce272da5db, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3156,6 +3156,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxSpeed: 4
   GameOverModal: {fileID: 1829144596}
+  CurrentScoreTxt: {fileID: 1608031858}
+  BestScoreTxt: {fileID: 170222766}
+  CurrentScoreResult: {fileID: 1985425504}
+  BestScoreResult: {fileID: 489835617}
 --- !u!50 &1626481325
 Rigidbody2D:
   serializedVersion: 4
