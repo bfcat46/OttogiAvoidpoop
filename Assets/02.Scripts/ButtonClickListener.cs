@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class ButtonClickListener : MonoBehaviour
 {
     private Button _button;
+
     private void Start()
     {
         _button = gameObject.GetComponent<Button>();
