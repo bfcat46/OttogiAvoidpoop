@@ -6,8 +6,13 @@ public class Ball : MonoBehaviour
 
     //public int type;
 
+    private AudioSource audioSource;
+    public AudioClip clip;
+
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
         var x = Random.Range(-3.0f, 3.0f);
         const float y = 10.0f;
         transform.position = new Vector2(x, y);
@@ -22,7 +27,7 @@ public class Ball : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground")) // 충돌한 객체가 바닥이라면
         {
-            Debug.Log("바닥 충돌");
+            audioSource.PlayOneShot(clip);
             Animator animator = GetComponent<Animator>();
             animator.enabled = false; // 애니메이터 비활성화
 
@@ -39,6 +44,11 @@ public class Ball : MonoBehaviour
             }
 
             Invoke("DestroyBall", 3f); // 지면과 충돌하면 3초 후 삭제
+        }
+
+        else if (collision.gameObject.CompareTag("Player")) // 충돌한 객체가 플레이어라면
+        {
+            audioSource.PlayOneShot(clip);
         }
 
         //if (!collision.gameObject.CompareTag("Ground")) return;
