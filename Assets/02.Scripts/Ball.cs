@@ -1,24 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
+    //private float _speed = 0.05f;
+
 
     private float speed = 0.05f;
 
     //public int type;
 
-    void Start()
+
+    private void Start()
     {
-        float x = Random.Range(-3.0f, 3.0f);
-        float y = 10.0f;
+        var x = Random.Range(-3.0f, 3.0f);
+        const float y = 10.0f;
         transform.position = new Vector2(x, y);
     }
 
     void Update()
     {
-        //transform.position += Vector3.down * speed; // 이동방법1
+        //transform.position += Vector3.down * _speed;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -36,6 +37,12 @@ public class Ball : MonoBehaviour
             Time.timeScale = 0.0f; // 멈추고
             GameManager.Instance.GameOver(); // 게임오버 패널 호출
         }
+
+        //if (!collision.gameObject.CompareTag("Ground")) return;
+        //var animator = GetComponent<Animator>();
+        //animator.enabled = false;
+        //Invoke(nameof(DestroyBall), 3f);
+
     }
 
 
