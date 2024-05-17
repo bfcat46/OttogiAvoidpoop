@@ -1486,7 +1486,7 @@ TilemapCollider2D:
   m_GameObject: {fileID: 1327917499}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: e12ef6387c9714b4297927041518083b, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -2102,7 +2102,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1511765110}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: e12ef6387c9714b4297927041518083b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -2151,6 +2151,7 @@ GameObject:
   - component: {fileID: 1626481326}
   - component: {fileID: 1626481325}
   - component: {fileID: 1626481324}
+  - component: {fileID: 1626481329}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2310,6 +2311,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1626481329
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626481323}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 51b0593a3e48943458f266b6c142014b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
