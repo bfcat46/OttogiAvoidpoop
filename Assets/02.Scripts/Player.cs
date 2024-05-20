@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D _rigid;
     private SpriteRenderer _spriteRenderer;
     private Animator _animator;
+    public GameObject[] characters;
 
     public float MaxSpeed;
     private static readonly int IsWalking = Animator.StringToHash("isWalking");
@@ -18,6 +19,11 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI CurrentScoreResult, BestScoreResult;
+
+    private void Start()
+    {
+        //characters[DataManager.instance.characterNum].SetActive(true);
+    }
 
     private void Awake()
     {
