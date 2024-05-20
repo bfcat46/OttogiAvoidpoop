@@ -20,7 +20,7 @@ public class ButtonClickListener : MonoBehaviour
                 SceneManager.LoadScene("StartScene");
                 break;
             case "StartButton" or "RetryButton":
-                GameManager.Instance.GameStart();
+                SceneManager.LoadScene("MainScene");
                 break;
             case "SettingButton":
                 SceneManager.LoadScene("SettingScene");
