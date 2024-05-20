@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI CurrentScoreResult, BestScoreResult;
+    public GameObject[] characters;
 
     private GameObject _ball;
 
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour
             CancelInvoke(nameof(MakeBall));
         }
         InvokeRepeating(nameof(MakeBall), 2.0f, 3.0f);
+        characters[DataManager.instance.characterNum].SetActive(true);
     }
 
     private void Update()

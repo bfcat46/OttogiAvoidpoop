@@ -2482,7 +2482,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Score: 0
-  BestScore: 0
   GameOverModal: {fileID: 1829144596}
   CurrentScoreTxt: {fileID: 1608031858}
   BestScoreTxt: {fileID: 170222766}
