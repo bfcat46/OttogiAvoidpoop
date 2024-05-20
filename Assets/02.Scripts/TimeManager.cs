@@ -1,17 +1,16 @@
-using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
 
 public class TimeManager : MonoBehaviour
 {
-    private const float GAME_TIME_MINUTES = 5;
-    
-    public TextMeshProUGUI TimeText;
-
     private static TimeManager s_instance;
     public static TimeManager Instance => s_instance == null ? null : s_instance;
-    
+
+    private const int GAME_TIME_MINUTES = 5;
+
+    public TextMeshProUGUI TimeText;
+
     private void Awake()
     {
         if (s_instance == null)
@@ -28,7 +27,7 @@ public class TimeManager : MonoBehaviour
     public IEnumerator Timer()
     {
         var elapsedTime = GAME_TIME_MINUTES * 60.0f;
-        while (elapsedTime > 0.0f)
+        while (elapsedTime > 0.0f && GameManager.Instance.IsGamePlaying)
         {
             elapsedTime -= Time.deltaTime;
             var minutes = Mathf.Floor(elapsedTime / 60).ToString("00");
