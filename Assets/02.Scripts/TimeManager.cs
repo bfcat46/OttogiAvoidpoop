@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
 
 public class TimeManager : MonoBehaviour
 {
-    private const int GAME_TIME_MINUTES = 5;
+    private const float GAME_TIME_MINUTES = 5;
     
     public TextMeshProUGUI TimeText;
 
@@ -26,12 +27,12 @@ public class TimeManager : MonoBehaviour
 
     public IEnumerator Timer()
     {
-        var elapsedTime = GAME_TIME_MINUTES / 60.0f;
+        var elapsedTime = GAME_TIME_MINUTES * 60.0f;
         while (elapsedTime > 0.0f)
         {
             elapsedTime -= Time.deltaTime;
             var minutes = Mathf.Floor(elapsedTime / 60).ToString("00");
-            var seconds = (elapsedTime % 60).ToString("00");
+            var seconds = Mathf.Floor(elapsedTime % 60).ToString("00");
             TimeText.text = $"{minutes}:{seconds}";
             yield return null;
         }
