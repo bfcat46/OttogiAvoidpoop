@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance => s_instance == null ? null : s_instance;
 
     public int Score;
-    public int BestScore;
+    public static int BestScore;
 
     [SerializeField]
     private GameObject GameOverModal;
@@ -20,19 +20,20 @@ public class GameManager : MonoBehaviour
 
     private GameObject _ball;
 
+    [HideInInspector]
     public bool IsGamePlaying;
 
     private void Awake()
     {
         if (s_instance != null) return;
         s_instance = this;
-        BestScoreTxt.text = Instance.BestScore.ToString();
-        GameOverModal.SetActive(false);
     }
 
     private void Start()
     {
         IsGamePlaying = true;
+        GameOverModal.SetActive(false);
+        BestScoreTxt.text = BestScore.ToString();
         Time.timeScale = 1;
         Score = 0;
         _ball = Resources.Load<GameObject>("Prefabs/Ball");
@@ -60,16 +61,16 @@ public class GameManager : MonoBehaviour
         GameOverModal.SetActive(true);
         TimeManager.Instance.TimeText.text = "";
 
-        BestScoreTxt.text = Instance.BestScore.ToString();
-        if (Instance.Score > Instance.BestScore)
+        BestScoreTxt.text = BestScore.ToString();
+        if (Instance.Score > BestScore)
         {
-            Instance.BestScore = Instance.Score;
-            BestScoreTxt.text = Instance.BestScore.ToString();
+            BestScore = Instance.Score;
+            BestScoreTxt.text = BestScore.ToString();
         }
         Instance.CurrentScoreTxt.text = "";
         Instance.BestScoreTxt.text = "";
 
-        BestScoreResult.text = "최고 점수: " + Instance.BestScore;
+        BestScoreResult.text = "최고 점수: " + BestScore;
         CurrentScoreResult.text = "획득 점수: " + Instance.Score;
         Time.timeScale = 0;
     }
