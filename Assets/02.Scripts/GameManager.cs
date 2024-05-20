@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
 
     private GameObject _ball;
 
+    public GameObject[] characters;
+
     public bool IsGamePlaying;
 
     private void Awake()
@@ -37,6 +39,7 @@ public class GameManager : MonoBehaviour
         Score = 0;
         _ball = Resources.Load<GameObject>("Prefabs/Ball");
         InvokeRepeating(nameof(MakeBall), 2.0f, 3.0f);
+        characters[DataManager.instance.characterNum].SetActive(true);
     }
 
     private void Update()
