@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         Score = 0;
         SceneManager.LoadScene("MainScene");
-        InvokeRepeating(nameof(MakeBall), 0.0f, 3.0f);
+        InvokeRepeating(nameof(MakeBall), 2.0f, 3.0f);
     }
 
     private void MakeBall()

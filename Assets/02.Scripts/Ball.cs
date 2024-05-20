@@ -4,6 +4,7 @@ public class Ball : MonoBehaviour
 {
     private AudioSource _audioSource;
     public AudioClip Clip;
+    public ParticleSystem ballParticle;
 
     private void Start()
     {
@@ -21,7 +22,8 @@ public class Ball : MonoBehaviour
             GameManager.Instance.Score++;
             
             _audioSource.PlayOneShot(Clip);
-            
+            ballParticle.Play();
+
             var animator = GetComponent<Animator>();
             animator.enabled = false;
 
