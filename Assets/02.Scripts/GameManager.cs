@@ -1,49 +1,79 @@
+using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     private static GameManager s_instance;
     public static GameManager Instance => s_instance == null ? null : s_instance;
 
-    private static Button s_startButton;
-    private static Button s_settingButton;
-
     public int Score;
-    public int BestScore;
+    public static int BestScore;
 
-    public GameObject Ball;
-    private int _count = 1;
-    
+    [SerializeField]
+    private GameObject GameOverModal;
+
+    [SerializeField]
+    private TextMeshProUGUI CurrentScoreTxt, BestScoreTxt;
+
+    [SerializeField]
+    private TextMeshProUGUI CurrentScoreResult, BestScoreResult;
+    public GameObject[] characters;
+
+    private GameObject _ball;
+
+    [HideInInspector]
+    public bool IsGamePlaying;
+
     private void Awake()
     {
-        if (s_instance == null)
-        {
-            s_instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        if (s_instance != null) return;
+        s_instance = this;
     }
 
-    public void GameStart()
+    private void Start()
     {
+        IsGamePlaying = true;
+        GameOverModal.SetActive(false);
+        BestScoreTxt.text = BestScore.ToString();
         Time.timeScale = 1;
         Score = 0;
-        SceneManager.LoadScene("MainScene");
+        _ball = Resources.Load<GameObject>("Prefabs/Ball");
+        if (IsInvoking(nameof(MakeBall)))
+        {
+            CancelInvoke(nameof(MakeBall));
+        }
         InvokeRepeating(nameof(MakeBall), 2.0f, 3.0f);
+        characters[DataManager.instance.characterNum].SetActive(true);
+    }
+
+    private void Update()
+    {
+        if (!IsGamePlaying) return;
+        CurrentScoreTxt.text = Instance.Score.ToString();
     }
 
     private void MakeBall()
     {
-        Instantiate(Ball);
+        Instantiate(Instance._ball);
     }
 
-    public static void GameOver()
+    public void GameOver()
     {
+        IsGamePlaying = false;
+        GameOverModal.SetActive(true);
+        TimeManager.Instance.TimeText.text = "";
+
+        BestScoreTxt.text = BestScore.ToString();
+        if (Instance.Score > BestScore)
+        {
+            BestScore = Instance.Score;
+            BestScoreTxt.text = BestScore.ToString();
+        }
+        Instance.CurrentScoreTxt.text = "";
+        Instance.BestScoreTxt.text = "";
+
+        BestScoreResult.text = "최고 점수: " + BestScore;
+        CurrentScoreResult.text = "획득 점수: " + Instance.Score;
         Time.timeScale = 0;
     }
 }

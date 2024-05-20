@@ -1,22 +1,40 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class TimeManager : MonoBehaviour
 {
-    [SerializeField]
-    private Text Text;
+    private static TimeManager s_instance;
+    public static TimeManager Instance => s_instance == null ? null : s_instance;
 
-    IEnumerator Timer()
+    private const int GAME_TIME_MINUTES = 5;
+
+    public TextMeshProUGUI TimeText;
+
+    private void Awake()
     {
-        var elapsedTime = 0.0f;
-        while (elapsedTime <= 300.0f)
+        if (s_instance == null)
         {
-            elapsedTime += Time.deltaTime;
+            s_instance = this;
+        }
+    }
+
+    private void Start()
+    {
+        StartCoroutine(Instance.Timer());
+    }
+
+    public IEnumerator Timer()
+    {
+        var elapsedTime = GAME_TIME_MINUTES * 60.0f;
+        while (elapsedTime > 0.0f && GameManager.Instance.IsGamePlaying)
+        {
+            elapsedTime -= Time.deltaTime;
             var minutes = Mathf.Floor(elapsedTime / 60).ToString("00");
-            var seconds = (elapsedTime % 60).ToString("00");
-            Text.text = $"{minutes}:{seconds}";
+            var seconds = Mathf.Floor(elapsedTime % 60).ToString("00");
+            TimeText.text = $"{minutes}:{seconds}";
             yield return null;
         }
+        GameManager.Instance.GameOver();
     }
 }

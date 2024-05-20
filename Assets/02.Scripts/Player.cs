@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -6,29 +5,13 @@ public class Player : MonoBehaviour
     private Rigidbody2D _rigid;
     private SpriteRenderer _spriteRenderer;
     private Animator _animator;
-    public GameObject[] characters;
 
     public float MaxSpeed;
     private static readonly int IsWalking = Animator.StringToHash("isWalking");
 
-    [SerializeField]
-    private GameObject GameOverModal;
-
-    [SerializeField]
-    private TextMeshProUGUI CurrentScoreTxt, BestScoreTxt;
-
-    [SerializeField]
-    private TextMeshProUGUI CurrentScoreResult, BestScoreResult;
-
-    private void Start()
-    {
-        //characters[DataManager.instance.characterNum].SetActive(true);
-    }
 
     private void Awake()
     {
-        BestScoreTxt.text = GameManager.Instance.BestScore.ToString();
-        GameOverModal.SetActive(false);
         _rigid = GetComponent<Rigidbody2D>();
         _rigid.freezeRotation = true;
         _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -37,7 +20,6 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        CurrentScoreTxt.text = GameManager.Instance.Score.ToString();
         //Stop speed
         if (Input.GetButtonUp("Horizontal"))
         {
@@ -75,17 +57,6 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (!collision.gameObject.CompareTag("Ball")) return;
-        GameOverModal.SetActive(true);
-        var gameManager = GameManager.Instance;
-
-        BestScoreTxt.text = gameManager.BestScore.ToString();
-        if (gameManager.Score > gameManager.BestScore)
-        {
-            gameManager.BestScore = gameManager.Score;
-            BestScoreTxt.text = gameManager.BestScore.ToString();
-        }
-        BestScoreResult.text = "최고 점수: " + gameManager.BestScore;
-        CurrentScoreResult.text = "획득 점수: " + gameManager.Score;
-        GameManager.GameOver();
+        GameManager.Instance.GameOver();
     }
 }
