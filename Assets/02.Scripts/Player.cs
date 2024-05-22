@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
 
     private bool isShieldActive;
     private float shieldDuration = 10.0f;
-    private GameObject shield;
+    [SerializeField] private GameObject shield;
 
     private void Awake()
     {
@@ -20,7 +20,6 @@ public class Player : MonoBehaviour
         _rigid.freezeRotation = true;
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
-        shield = transform.Find("Shield").gameObject;
     }
 
     private void Start()

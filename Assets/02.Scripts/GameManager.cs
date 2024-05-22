@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,11 +19,11 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI CurrentScoreResult, BestScoreResult;
 
-    public GameObject[] characters;
+    public GameObject[] Characters;
 
     private GameObject _ball;
 
-    [SerializeField] private GameObject apple;
+    [SerializeField] private GameObject Apple;
 
     [HideInInspector]
     public bool IsGamePlaying;
@@ -45,7 +46,7 @@ public class GameManager : MonoBehaviour
         InvokeRepeating(nameof(MakeBall), 2.0f, 3.0f);
         InvokeRepeating(nameof(SpawnApple), 10.0f, 20.0f);
 
-        characters[DataManager.instance.characterNum].SetActive(true);
+        Characters[DataManager.Instance.CharacterNum].SetActive(true);
     }
 
     private void Update()
@@ -63,7 +64,7 @@ public class GameManager : MonoBehaviour
     {
         var x = Random.Range(-3.0f, 3.0f);
         const float y = 10.0f;
-        Instantiate(apple, new Vector2(x, y), Quaternion.identity);
+        Instantiate(Apple, new Vector2(x, y), Quaternion.identity);
     }
 
     public void GameOver()

@@ -1,29 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
 public class VolumeSlider : MonoBehaviour
 {
-    [SerializeField] private Slider volumeSlider;
+    [SerializeField] 
+    private Slider Slider;
 
     public delegate void VolumeChangeHandler(float volume);
     public event VolumeChangeHandler OnVolumeChange;
 
-    void Start()
+    private void Start()
     {
-        if (volumeSlider != null)
-        {
-            volumeSlider.gameObject.SetActive(true);
-            volumeSlider.onValueChanged.AddListener(HandleVolumeChange);
-        }
+        if (Slider == null) return;
+        Slider.gameObject.SetActive(true);
+        Slider.onValueChanged.AddListener(HandleVolumeChange);
     }
 
     public void SetSliderValue(float volume)
     {
-        if (volumeSlider != null)
+        if (Slider != null)
         {
-            volumeSlider.value = volume;
+            Slider.value = volume;
         }
     }
 
