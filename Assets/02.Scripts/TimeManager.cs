@@ -27,7 +27,7 @@ public class TimeManager : MonoBehaviour
     public IEnumerator Timer()
     {
         var elapsedTime = GAME_TIME_MINUTES * 60.0f;
-        while (elapsedTime > 0.0f && GameManager.Instance.IsGamePlaying)
+        while (elapsedTime > 0.0f)
         {
             elapsedTime -= Time.deltaTime;
             var minutes = Mathf.Floor(elapsedTime / 60).ToString("00");
