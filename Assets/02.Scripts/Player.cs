@@ -10,9 +10,10 @@ public class Player : MonoBehaviour
     public float MaxSpeed;
     private static readonly int IsWalking = Animator.StringToHash("isWalking");
 
-    private bool isShieldActive;
-    private float shieldDuration = 10.0f;
-    [SerializeField] private GameObject shield;
+    private bool _isShieldActive;
+    private const float SHIELD_DURATION = 10.0f;
+    [SerializeField]
+    private GameObject Shield;
 
     private void Awake()
     {
@@ -24,7 +25,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        shield.SetActive(false);
+        Shield.SetActive(false);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -35,32 +36,30 @@ public class Player : MonoBehaviour
             ActivateShield();
         }
 
-        if (collision.gameObject.CompareTag("Ball"))
+        if (!collision.gameObject.CompareTag("Ball")) return;
+        if (_isShieldActive)
         {
-            if (isShieldActive)
-            {
-                Destroy(collision.gameObject);
-            }
-            else
-            {
-                GameManager.Instance.GameOver();
-            }
+            Destroy(collision.gameObject);
+        }
+        else
+        {
+            GameManager.Instance.GameOver();
         }
     }
 
     private void ActivateShield()
     {
-        if (isShieldActive) return;
-        isShieldActive = true;
-        shield.SetActive(true);
+        if (_isShieldActive) return;
+        _isShieldActive = true;
+        Shield.SetActive(true);
         StartCoroutine(ShieldTimer());
     }
 
     private IEnumerator ShieldTimer()
     {
-        yield return new WaitForSeconds(shieldDuration);
-        isShieldActive = false;
-        shield.SetActive(false);
+        yield return new WaitForSeconds(SHIELD_DURATION);
+        _isShieldActive = false;
+        Shield.SetActive(false);
     }
 
 
@@ -99,12 +98,4 @@ public class Player : MonoBehaviour
             _rigid.velocity = new Vector2(MaxSpeed * -1, _rigid.velocity.y);
         }
     }
-
-    /*
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (!collision.gameObject.CompareTag("Ball")) return;
-        GameManager.Instance.GameOver();
-    }
-    */
 }
