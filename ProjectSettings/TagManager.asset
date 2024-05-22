@@ -7,6 +7,8 @@ TagManager:
   - Ground
   - Ball
   - GameOverModal
+  - Shield
+  - Apple
   layers:
   - Default
   - TransparentFX

@@ -17,9 +17,12 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI CurrentScoreResult, BestScoreResult;
+
     public GameObject[] characters;
 
     private GameObject _ball;
+
+    [SerializeField] private GameObject apple;
 
     [HideInInspector]
     public bool IsGamePlaying;
@@ -38,11 +41,10 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         Score = 0;
         _ball = Resources.Load<GameObject>("Prefabs/Ball");
-        if (IsInvoking(nameof(MakeBall)))
-        {
-            CancelInvoke(nameof(MakeBall));
-        }
+
         InvokeRepeating(nameof(MakeBall), 2.0f, 3.0f);
+        InvokeRepeating(nameof(SpawnApple), 10.0f, 20.0f);
+
         characters[DataManager.instance.characterNum].SetActive(true);
     }
 
@@ -55,6 +57,13 @@ public class GameManager : MonoBehaviour
     private void MakeBall()
     {
         Instantiate(Instance._ball);
+    }
+
+    private void SpawnApple()
+    {
+        var x = Random.Range(-3.0f, 3.0f);
+        const float y = 10.0f;
+        Instantiate(apple, new Vector2(x, y), Quaternion.identity);
     }
 
     public void GameOver()
