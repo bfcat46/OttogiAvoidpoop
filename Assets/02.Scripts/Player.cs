@@ -35,16 +35,14 @@ public class Player : MonoBehaviour
             ActivateShield();
         }
 
-        if (collision.gameObject.CompareTag("Ball"))
+        if (!collision.gameObject.CompareTag("Ball")) return;
+        if (_isShieldActive)
         {
-            if (_isShieldActive)
-            {
-                Destroy(collision.gameObject);
-            }
-            else
-            {
-                GameManager.Instance.GameOver();
-            }
+            Destroy(collision.gameObject);
+        }
+        else
+        {
+            GameManager.Instance.GameOver();
         }
     }
 
@@ -99,12 +97,4 @@ public class Player : MonoBehaviour
             _rigid.velocity = new Vector2(MaxSpeed * -1, _rigid.velocity.y);
         }
     }
-
-    /*
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (!collision.gameObject.CompareTag("Ball")) return;
-        GameManager.Instance.GameOver();
-    }
-    */
 }

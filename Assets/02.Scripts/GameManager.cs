@@ -21,8 +21,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] Characters;
 
     private GameObject _ball;
-
-    [SerializeField] private GameObject Apple;
+    private GameObject _apple;
 
     [HideInInspector]
     public bool IsGamePlaying;
@@ -41,7 +40,8 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         Score = 0;
         _ball = Resources.Load<GameObject>("Prefabs/Ball");
-
+        _apple = Resources.Load<GameObject>("Prefabs/Apple");
+        
         InvokeRepeating(nameof(MakeBall), 2.0f, 3.0f);
         InvokeRepeating(nameof(SpawnApple), 10.0f, 20.0f);
 
@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
     {
         var x = Random.Range(-3.0f, 3.0f);
         const float y = 10.0f;
-        Instantiate(Apple, new Vector2(x, y), Quaternion.identity);
+        Instantiate(_apple, new Vector2(x, y), Quaternion.identity);
     }
 
     public void GameOver()

@@ -660,7 +660,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 832343122}
-        m_TargetAssemblyTypeName: IntroUi, Assembly-CSharp
+        m_TargetAssemblyTypeName: IntroUI, Assembly-CSharp
         m_MethodName: ChoiceCharacter
         m_Mode: 3
         m_Arguments:
@@ -1872,7 +1872,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -6367560908665664636, guid: 3750f45c844123341b9a777a96cb1eca, type: 3}
+  m_Sprite: {fileID: 4278371960119211202, guid: 3750f45c844123341b9a777a96cb1eca, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2010,8 +2010,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b59fa9538a7dfb418c1e8a7498d5e09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CharacterImage: []
-  SelectedCharacter: {fileID: 0}
+  CharacterImage:
+  - {fileID: 4278371960119211202, guid: 3750f45c844123341b9a777a96cb1eca, type: 3}
+  - {fileID: 4278371960119211202, guid: cd947491a13509945aa1b644f9db3ef2, type: 3}
+  SelectedCharacter: {fileID: 807352826}
 --- !u!1 &889175491
 GameObject:
   m_ObjectHideFlags: 0
@@ -4290,7 +4292,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 832343122}
-        m_TargetAssemblyTypeName: IntroUi, Assembly-CSharp
+        m_TargetAssemblyTypeName: IntroUI, Assembly-CSharp
         m_MethodName: ChoiceCharacter
         m_Mode: 3
         m_Arguments:

@@ -7,6 +7,7 @@ public class AudioManager : MonoBehaviour
 
     private AudioSource _audioSource;
     public AudioClip Clip;
+    
     private VolumeSlider _slider;
 
     private void Awake()

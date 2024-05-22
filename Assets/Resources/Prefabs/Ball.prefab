@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Clip: {fileID: 8300000, guid: 345993627640c7043b830fca15581c90, type: 3}
-  ballParticle: {fileID: 5393177495453967722}
+  BallParticle: {fileID: 5393177495453967722}
 --- !u!95 &646304153970463017
 Animator:
   serializedVersion: 5

@@ -12,7 +12,6 @@ public class ParallaxBackground : MonoBehaviour
         _material = GetComponent<Renderer>().material;
     }
 
-    // Update is called once per frame
     private void Update()
     {
         _material.SetTextureOffset(MainTex, Vector2.right * (MoveSpeed * Time.time));
