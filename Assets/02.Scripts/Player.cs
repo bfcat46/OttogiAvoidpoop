@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class Player : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class Player : MonoBehaviour
     public float MaxSpeed;
     private static readonly int IsWalking = Animator.StringToHash("isWalking");
 
+    private bool isShieldActive;
+    private float shieldDuration = 10.0f;
+    [SerializeField] private GameObject shield;
 
     private void Awake()
     {
@@ -17,6 +21,48 @@ public class Player : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
     }
+
+    private void Start()
+    {
+        shield.SetActive(false);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Apple"))
+        {
+            Destroy(collision.gameObject);
+            ActivateShield();
+        }
+
+        if (collision.gameObject.CompareTag("Ball"))
+        {
+            if (isShieldActive)
+            {
+                Destroy(collision.gameObject);
+            }
+            else
+            {
+                GameManager.Instance.GameOver();
+            }
+        }
+    }
+
+    private void ActivateShield()
+    {
+        if (isShieldActive) return;
+        isShieldActive = true;
+        shield.SetActive(true);
+        StartCoroutine(ShieldTimer());
+    }
+
+    private IEnumerator ShieldTimer()
+    {
+        yield return new WaitForSeconds(shieldDuration);
+        isShieldActive = false;
+        shield.SetActive(false);
+    }
+
 
     private void Update()
     {
@@ -54,9 +100,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    /*
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (!collision.gameObject.CompareTag("Ball")) return;
         GameManager.Instance.GameOver();
     }
+    */
 }
