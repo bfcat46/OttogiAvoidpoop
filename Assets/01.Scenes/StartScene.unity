@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3bd1dc54550bcd469f7c0c17263c96c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: 8320a66a3e7ebaa46a39f9dc143b4f4c, type: 3}
+  Clip: {fileID: 8300000, guid: 8320a66a3e7ebaa46a39f9dc143b4f4c, type: 3}
 --- !u!4 &30746013
 Transform:
   m_ObjectHideFlags: 0
@@ -564,7 +564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e99735de2caf2354cb235753e2edd0f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: -0.01
+  MoveSpeed: 0.1
 --- !u!1 &346211798
 GameObject:
   m_ObjectHideFlags: 0
@@ -1593,7 +1593,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0456a30fef86cf4b87d281b5fff15b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeSlider: {fileID: 519373053}
+  Slider: {fileID: 519373053}
 --- !u!114 &519373053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2010,10 +2010,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b59fa9538a7dfb418c1e8a7498d5e09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterImage:
-  - {fileID: -6367560908665664636, guid: 3750f45c844123341b9a777a96cb1eca, type: 3}
-  - {fileID: -6367560908665664636, guid: cd947491a13509945aa1b644f9db3ef2, type: 3}
-  selectedcharacter: {fileID: 807352826}
+  CharacterImage: []
+  SelectedCharacter: {fileID: 0}
 --- !u!1 &889175491
 GameObject:
   m_ObjectHideFlags: 0
@@ -4041,7 +4039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d67dcceca85e9e4f809b3e913ebfb48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterNum: 0
+  CharacterNum: 0
 --- !u!1 &1968794936
 GameObject:
   m_ObjectHideFlags: 0
